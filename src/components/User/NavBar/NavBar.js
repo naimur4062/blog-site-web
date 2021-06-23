@@ -20,10 +20,10 @@ const NavBar = () => {
                             <Link to="/about"><span className="navLink">ABOUT</span></Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/blogs"><span className="navLink">BLOGS</span></Link>
+                            <Link to="/contact"><span className="navLink">CONTACT US</span></Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/contact"><span className="navLink">CONTACT US</span></Link>
+                            <Link to="/admin"><span className="navLink">ADMIN</span></Link>
                         </Nav.Link>
                         <Nav.Link>
                             <Link to="/login"><span className="navLink">LOGIN</span></Link>
