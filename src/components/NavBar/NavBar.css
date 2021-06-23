@@ -1,0 +1,13 @@
+.brand,
+.navLink {
+  color: gray;
+  font-weight: 700;
+}
+
+Nav a:hover {
+  text-decoration: none;
+}
+
+#toggle {
+  border: 2px solid gray;
+}
