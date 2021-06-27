@@ -20,6 +20,52 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
+        {/* Bangladesh */}
+        <Route path="/politics">
+          <Home />
+        </Route>
+        <Route path="/society">
+          <Home />
+        </Route>
+        <Route path="/policy issue">
+          <Home />
+        </Route>
+        <Route path="/governance">
+          <Home />
+        </Route>
+        {/* International */}
+        <Route path="/global governance">
+          <Home />
+        </Route>
+        <Route path="/europe">
+          <Home />
+        </Route>
+        <Route path="/north america">
+          <Home />
+        </Route>
+        <Route path="/asia">
+          <Home />
+        </Route>
+        {/* Public Administration */}
+        <Route path="/management">
+          <Home />
+        </Route>
+        <Route path="/public policy">
+          <Home />
+        </Route>
+        <Route path="/contemporary government">
+          <Home />
+        </Route>
+        {/* Others */}
+        <Route path="/knowledge sharing">
+          <Home />
+        </Route>
+        <Route path="/idea">
+          <Home />
+        </Route>
+        <Route path="/problem solution">
+          <Home />
+        </Route>
         <Route path="/admin">
           <Admin />
         </Route>

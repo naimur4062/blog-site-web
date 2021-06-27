@@ -1,5 +1,6 @@
 .brand,
-.navLink {
+.navLink,
+#basic-nav-dropdown {
   color: gray;
   font-weight: 700;
 }

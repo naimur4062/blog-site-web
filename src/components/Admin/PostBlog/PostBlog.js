@@ -20,6 +20,7 @@ const PostBlog = () => {
 
     const onSubmit = data => {
         const blogData = {
+            topic: data.topic,
             title: data.title,
             content: data.content,
             image: imageURL
@@ -62,12 +63,16 @@ const PostBlog = () => {
                         <div className="admin container shadow p-3 mb-3 mt-5 bg-body">
                             <h3 className="text-center text-secondary">Post Blog</h3>
                             <div className="col-md-8 form-group mx-auto">
+                                <label htmlFor="form-label">Blog Topic (please start with small letter).</label> <br />
+                                <input name="topic" placeholder="Write Blog Topic" type="form-control" required ref={register} className="form-control" />
+                            </div>
+                            <div className="col-md-8 form-group mx-auto">
                                 <label htmlFor="form-label">Blog Title</label> <br />
                                 <input name="title" placeholder="Write Blog Tile" type="form-control" required ref={register} className="form-control" />
                             </div>
                             <div className="col-md-8 pt-2 form-group mx-auto">
                                 <label htmlFor="form-label">Blog Content</label> <br />
-                                <textarea className="form-control" name="content" defaultValue="" placeholder="Write Blog Content" required ref={register} cols="30" rows="5" required></textarea>
+                                <textarea className="form-control" name="content" defaultValue="" placeholder="Write Blog Content" required ref={register} cols="30" rows="10" required></textarea>
                             </div>
                             <div className="col-md-8 pt-2 form-group mx-auto">
                                 <label htmlFor="form-label">Upload Image</label> <br />
@@ -75,7 +80,7 @@ const PostBlog = () => {
                             </div>
                             <div className="save-button col-md-8 pt-2 form-group mx-auto text-center sendMessage">
                                 {
-                                    imageURL ? <input type="submit" className="btn btn-danger" value="APPLY" required /> : <input type="submit" className="btn btn-primary" value="APPLY" disabled />
+                                    imageURL ? <input type="submit" className="btn btn-danger" value="POST" required /> : <input type="submit" className="btn btn-primary" value="APPLY" disabled />
                                 }
                             </div>
                         </div>
