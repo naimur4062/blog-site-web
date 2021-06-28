@@ -20,7 +20,7 @@ const ReadBlog = () => {
         <div>
             <h1 className="text-center mt-5">{content.title}</h1>
             <div className="d-flex justify-content-center mt-5 container">
-                <pre className='tab'>{content.content}</pre>
+                <pre className='content-details'>{content.content}</pre>
             </div>
         </div>
     );

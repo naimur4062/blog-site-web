@@ -1,3 +1,6 @@
-pre {
+.content-details {
   white-space: pre-wrap;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: justify;
 }

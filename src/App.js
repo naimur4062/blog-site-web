@@ -55,7 +55,7 @@ function App() {
         <Route path="/public policy">
           <Blogs />
         </Route>
-        <Route path="/contemporary government">
+        <Route path="/contemporary governance">
           <Blogs />
         </Route>
         {/* Others */}
@@ -71,8 +71,9 @@ function App() {
         {/* read-blog */}
         <Route path="/blog/:id">
           <ReadBlog />
+          {/* admin */}
         </Route>
-        <Route path="/admin">
+        <Route path="/post blog">
           <Admin />
         </Route>
         <Route path="*">
