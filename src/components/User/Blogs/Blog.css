@@ -21,6 +21,7 @@
 }
 .card-body a:hover {
   color: grey;
+  text-decoration: none;
 }
 
 /* @media screen and (max-width: 480px) {

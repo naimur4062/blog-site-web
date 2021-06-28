@@ -8,6 +8,8 @@ import Home from "./components/User/Home/Home";
 import NavBar from "./components/User/NavBar/NavBar";
 import NotFound from "./components/User/NotFound/NotFound";
 import Admin from "./components/Admin/Admin/Admin";
+import Blogs from "./components/User/Blogs/Blogs";
+import ReadBlog from "./components/User/ReadBlog/ReadBlog";
 
 function App() {
   return (
@@ -22,49 +24,53 @@ function App() {
         </Route>
         {/* Bangladesh */}
         <Route path="/politics">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/society">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/policy issue">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/governance">
-          <Home />
+          <Blogs />
         </Route>
         {/* International */}
         <Route path="/global governance">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/europe">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/north america">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/asia">
-          <Home />
+          <Blogs />
         </Route>
         {/* Public Administration */}
         <Route path="/management">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/public policy">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/contemporary government">
-          <Home />
+          <Blogs />
         </Route>
         {/* Others */}
         <Route path="/knowledge sharing">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/idea">
-          <Home />
+          <Blogs />
         </Route>
         <Route path="/problem solution">
-          <Home />
+          <Blogs />
+        </Route>
+        {/* read-blog */}
+        <Route path="/blog/:id">
+          <ReadBlog />
         </Route>
         <Route path="/admin">
           <Admin />

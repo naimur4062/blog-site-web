@@ -4,7 +4,7 @@ import Blogs from '../Blogs/Blogs';
 const Home = () => {
     return (
         <div>
-            <Blogs />
+            This is Home.
         </div>
     );
 };
