@@ -10,6 +10,7 @@ import NotFound from "./components/User/NotFound/NotFound";
 import Admin from "./components/Admin/Admin/Admin";
 import Blogs from "./components/User/Blogs/Blogs";
 import ReadBlog from "./components/User/ReadBlog/ReadBlog";
+import DeleteBlogs from "./components/Admin/DeleteBlogs/DeleteBlogs";
 
 function App() {
   return (
@@ -71,10 +72,56 @@ function App() {
         {/* read-blog */}
         <Route path="/blog/:id">
           <ReadBlog />
-          {/* admin */}
         </Route>
+        {/* admin */}
         <Route path="/post blog">
           <Admin />
+        </Route>
+        {/* delete */}
+        <Route path="/delete politics">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete society">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete policy issue">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete governance">
+          <DeleteBlogs />
+        </Route>
+        {/* International */}
+        <Route path="/delete global governance">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete europe">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete north america">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete asia">
+          <DeleteBlogs />
+        </Route>
+        {/* Public Administration */}
+        <Route path="/delete management">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete public policy">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete contemporary governance">
+          <DeleteBlogs />
+        </Route>
+        {/* Others */}
+        <Route path="/delete knowledge sharing">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete idea">
+          <DeleteBlogs />
+        </Route>
+        <Route path="/delete problem solution">
+          <DeleteBlogs />
         </Route>
         <Route path="*">
           <NotFound />

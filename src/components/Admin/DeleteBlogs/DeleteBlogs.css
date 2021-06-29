@@ -1,0 +1,32 @@
+.blog {
+  border-radius: 20px;
+  padding: 20px;
+}
+.blog-heading {
+  background-color: #f5f6fa;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.delete-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-button Button {
+  margin: 0.5%;
+  width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .city,
+  .type,
+  .openings,
+  .applicants {
+    margin-left: 0px;
+  }
+  .applicants Button {
+    display: flex;
+    flex-direction: column;
+  }
+}

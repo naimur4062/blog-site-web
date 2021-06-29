@@ -26,49 +26,49 @@ const NavBar = () => {
                             </NavDropdown.Item>
                             {/* delete bangladesh */}
                             <NavDropdown.Item>
-                                <Link to="/politics"><span className="navLink">Delete Politics</span></Link>
+                                <Link to="/delete politics"><span className="navLink">Delete Politics</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/society"><span className="navLink">Delete Society</span></Link>
+                                <Link to="/delete society"><span className="navLink">Delete Society</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/policy issue"><span className="navLink">Delete Policy Issue</span></Link>
+                                <Link to="/delete policy issue"><span className="navLink">Delete Policy Issue</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/governance"><span className="navLink">Delete Governance</span></Link>
+                                <Link to="/delete governance"><span className="navLink">Delete Governance</span></Link>
                             </NavDropdown.Item>
                             {/* international */}
                             <NavDropdown.Item>
-                                <Link to="/global governance"><span className="navLink">Delete Global Governance</span></Link>
+                                <Link to="/delete global governance"><span className="navLink">Delete Global Governance</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/europe"><span className="navLink">Delete Europe</span></Link>
+                                <Link to="/delete europe"><span className="navLink">Delete Europe</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/north america"><span className="navLink">Delete North America</span></Link>
+                                <Link to="/delete north america"><span className="navLink">Delete North America</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/asia"><span className="navLink">Delete Asia</span></Link>
+                                <Link to="/delete asia"><span className="navLink">Delete Asia</span></Link>
                             </NavDropdown.Item>
                             {/* public administration */}
                             <NavDropdown.Item>
-                                <Link to="/management"><span className="navLink">Delete Management</span></Link>
+                                <Link to="/delete management"><span className="navLink">Delete Management</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/public policy"><span className="navLink">Delete Public Policy</span></Link>
+                                <Link to="/delete public policy"><span className="navLink">Delete Public Policy</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/contemporary governance"><span className="navLink">Delete Contemporary Governance</span></Link>
+                                <Link to="/delete contemporary governance"><span className="navLink">Delete Contemporary Governance</span></Link>
                             </NavDropdown.Item>
                             {/* others */}
                             <NavDropdown.Item>
-                                <Link to="/knowledge sharing"><span className="navLink">Delete Knowledge Sharing</span></Link>
+                                <Link to="/delete knowledge sharing"><span className="navLink">Delete Knowledge Sharing</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/idea"><span className="navLink">Delete Idea</span></Link>
+                                <Link to="/delete idea"><span className="navLink">Delete Idea</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/problem solution"><span className="navLink">Delete Problem Solution</span></Link>
+                                <Link to="/delete problem solution"><span className="navLink">Delete Problem Solution</span></Link>
                             </NavDropdown.Item>
                         </NavDropdown>
                         {/* <p>bangladesh</p> */}
