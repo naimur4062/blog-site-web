@@ -9,7 +9,8 @@ const Blog = ({ blog }) => {
         AOS.init({ duration: 2000 });
     }, []);
     const { title, content, image, _id } = blog;
-    const cutContent = content.slice(0, 100);
+    const splitContent = content.split(" ");
+    const cutContent = splitContent.slice(0, 15).toString();
 
     return (
         <div className="col-md-4 text-center d-flex justify-content-center align-items-center mb-5 cardDiv">

@@ -7,7 +7,7 @@ const DeleteBlogs = () => {
     const pathname = window.location.pathname;
     const currentPath = pathname.replace(/\/delete%20/g, "");
     const blogTopic = currentPath.replace(/\%20/g, " ");
-    const [dependency, setDependency] = useState(null);
+    const [dependency, setDependency] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:5000/allBlogs')
@@ -15,22 +15,15 @@ const DeleteBlogs = () => {
             .then(data => setBlogsArray(data))
     }, [dependency]);
 
-    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic; });
-    console.log(blogs);
+    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic });
 
     const deleteBlog = (id) => {
         fetch(`http://localhost:5000/delete/${id}`, {
             method: 'DELETE'
-        })
-            .then(res => {
-                if (res) {
-                    setDependency(true);
-                    alert('Delete Successfully');
-                };
-            });
+        });
+        setDependency(true);
+        alert('Delete is ongoing')
     };
-
-    console.log(dependency)
 
     return (
         <div style={{ height: '100vh' }} className="container-fluid" >

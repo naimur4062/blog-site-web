@@ -80,7 +80,7 @@ const PostBlog = () => {
                             </div>
                             <div className="save-button col-md-8 pt-2 form-group mx-auto text-center sendMessage">
                                 {
-                                    imageURL ? <input type="submit" className="btn btn-danger" value="POST" required /> : <input type="submit" className="btn btn-primary" value="APPLY" disabled />
+                                    imageURL ? <input type="submit" className="btn btn-danger" value="POST" required /> : <input type="submit" className="btn btn-primary" value="W" disabled />
                                 }
                             </div>
                         </div>

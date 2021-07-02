@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 
+.card img {
+  height: 200px;
+}
+
 /* @media screen and (max-width: 480px) {
     .margin {
         margin-left: 30px;

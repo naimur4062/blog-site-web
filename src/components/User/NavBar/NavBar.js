@@ -8,11 +8,11 @@ const NavBar = () => {
         <div>
             <Navbar sticky="top" expand="lg" collapseOnSelect>
                 <Navbar.Brand>
-                    <h1 className="brand">PAD.blogs</h1>
+                    {/* <h1 className="brand">PAD.blogs</h1> */}
                 </Navbar.Brand>
                 <Navbar.Toggle id="toggle" />
                 <Navbar.Collapse className="text-center">
-                    <Nav className="ml-auto">
+                    <Nav className="me-auto">
                         <Nav.Link>
                             <Link to="/home"><span className="navLink">HOME</span></Link>
                         </Nav.Link>
