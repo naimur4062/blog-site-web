@@ -1,19 +1,35 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { UserContext } from '../../../App';
+import { CommentContext, UserContext } from '../../../App';
 import Login from '../Login/Login';
 import { useParams } from 'react-router-dom';
 import ShowingComments from '../ShowingComments/ShowingComments';
+import { Button } from 'react-bootstrap';
 
 const Comments = () => {
+    const date = new Date();
+    const { id } = useParams();
     const { register, handleSubmit } = useForm();
     const [user, setUser] = useContext(UserContext);
-    const { id } = useParams();
     const [commentsArray, setCommentsArray] = useState([]);
     const beforeReverse = commentsArray.filter((comments) => { return comments.blogId === id });
-    const comments = beforeReverse.reverse();
-    const [commentSuccess, setCommentSuccess] = useState(false);
-    const date = new Date();
+    const fullComments = beforeReverse.reverse();
+    const cutComments = fullComments.slice(0, 5);
+    const [dependency, setDependency] = useState(null);
+    const [view, setView] = useState(false);
+
+    // console.log(comments.slice(0, 5))
+    // console.log('dependency', dependency)
+    console.log('view', view)
+    const handleView = () => {
+        setView(true);
+        // if (view === false) {
+        //     comments = fullComments;
+        // } else {
+        //     comments = cutComments;
+        // }
+        // return comments;
+    };
 
     const onSubmit = data => {
         const commentData = {
@@ -33,16 +49,24 @@ const Comments = () => {
         })
             .then(res => {
                 if (res) {
-                    setCommentSuccess(true)
+                    setDependency(true);
+                    setDependency(false);
                 }
             })
+    };
+
+    const deleteComment = (id) => {
+        fetch(`http://localhost:5000/deleteComment/${id}`, {
+            method: 'DELETE'
+        });
+        setDependency(id);
     };
 
     useEffect(() => {
         fetch('http://localhost:5000/comments')
             .then(res => res.json())
             .then(data => setCommentsArray(data))
-    }, [commentSuccess]);
+    }, [dependency]);
 
     return (
         <div>
@@ -58,10 +82,23 @@ const Comments = () => {
                     </div>
                 </div>
             </form>
-            <div className="mt-5">
-                {
-                    comments.map(showingComment => <ShowingComments key={showingComment._id} showingComment={showingComment} />)
-                }
+            <div className="mt-5 mb-5">
+                <div>
+                    <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
+                </div>
+                {/* <div>
+                    {
+                        fullComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
+                    }
+                </div> */}
+                <div>
+                    {
+                        cutComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
+                    }
+                </div>
+                <div className="text-center">
+                    <Button onClick={() => handleView()}>Click to view all comments</Button>
+                </div>
             </div>
         </div >
     );

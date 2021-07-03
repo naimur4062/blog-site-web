@@ -1,17 +1,8 @@
 import React from 'react';
 import './ShowingComments.css';
 
-const ShowingComments = ({ showingComment }) => {
+const ShowingComments = ({ showingComment, deleteComment }) => {
     const { name, photo, comment, date, _id } = showingComment;
-    console.log(_id)
-
-    const deleteComment = (id) => {
-        console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`, {
-            method: 'DELETE'
-        });
-        alert('Delete is ongoing')
-    }
 
     return (
         <div>
@@ -24,7 +15,7 @@ const ShowingComments = ({ showingComment }) => {
             <div className="d-flex comment-function">
                 <p>{new Date(date).toLocaleString().split(',')[0]}</p>
                 <p>Replay</p>
-                <button className="delete" onClick={() => deleteComment(_id)}>Delete</button>
+                <p className="delete" onClick={() => deleteComment(_id)}>Delete</p>
             </div>
         </div>
     );
