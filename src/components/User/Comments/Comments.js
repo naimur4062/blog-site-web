@@ -23,12 +23,6 @@ const Comments = () => {
     console.log('view', view)
     const handleView = () => {
         setView(true);
-        // if (view === false) {
-        //     comments = fullComments;
-        // } else {
-        //     comments = cutComments;
-        // }
-        // return comments;
     };
 
     const onSubmit = data => {
@@ -82,22 +76,27 @@ const Comments = () => {
                     </div>
                 </div>
             </form>
-            <div className="mt-5 mb-5">
-                <div>
-                    <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
-                </div>
-                {/* <div>
-                    {
-                        fullComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
-                    }
-                </div> */}
-                <div>
-                    {
-                        cutComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
-                    }
-                </div>
+            <div className="mt-5 mb-5"><div>
+                <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
+            </div>
+                {
+                    view === true ?
+                        <div>
+                            {
+                                fullComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
+                            }
+                        </div>
+                        :
+                        <div>
+                            {
+                                cutComments.map(showingComment => <ShowingComments deleteComment={deleteComment} key={showingComment._id} showingComment={showingComment} />)
+                            }
+                        </div>
+                }
                 <div className="text-center">
-                    <Button onClick={() => handleView()}>Click to view all comments</Button>
+                    {
+                        view === false && fullComments.length > 5 && <Button onClick={() => handleView()}>Click to view {fullComments.length - 5} more comments</Button>
+                    }
                 </div>
             </div>
         </div >

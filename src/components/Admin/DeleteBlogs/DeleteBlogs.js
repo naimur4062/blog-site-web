@@ -24,7 +24,7 @@ const DeleteBlogs = () => {
         fetch(`http://localhost:5000/delete/${id}`, {
             method: 'DELETE'
         });
-        setDependency(id)
+        setDependency(id);
     };
 
     // console.log(dependency)
