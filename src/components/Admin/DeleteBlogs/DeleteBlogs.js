@@ -8,8 +8,10 @@ const DeleteBlogs = () => {
     const currentPath = pathname.replace(/\/delete%20/g, "");
     const blogTopic = currentPath.replace(/\%20/g, " ");
     const [dependency, setDependency] = useState(null);
+    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic });
 
-    console.log('dependency', dependency)
+    // console.log('dependency', dependency);
+    // console.log(blogs);
 
     useEffect(() => {
         fetch('http://localhost:5000/allBlogs')
@@ -17,17 +19,17 @@ const DeleteBlogs = () => {
             .then(data => setBlogsArray(data))
     }, [dependency]);
 
-    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic });
-    // console.log(blogs);
-
     const deleteBlog = (id) => {
         fetch(`http://localhost:5000/delete/${id}`, {
             method: 'DELETE'
-        });
-        setDependency(id);
+        })
+            .then(res => {
+                if (res) {
+                    setDependency(id);
+                };
+            });
     };
 
-    // console.log(dependency)
 
     return (
         <div style={{ height: '100vh' }} className="container-fluid" >

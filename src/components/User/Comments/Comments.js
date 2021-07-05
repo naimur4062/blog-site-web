@@ -18,9 +18,6 @@ const Comments = () => {
     const [dependency, setDependency] = useState(null);
     const [view, setView] = useState(false);
 
-    // console.log(comments.slice(0, 5))
-    // console.log('dependency', dependency)
-    console.log('view', view)
     const handleView = () => {
         setView(true);
     };
@@ -41,8 +38,9 @@ const Comments = () => {
             },
             body: JSON.stringify(commentData)
         })
-            .then(res => {
-                if (res) {
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
                     setDependency(true);
                     setDependency(false);
                 }
@@ -52,8 +50,12 @@ const Comments = () => {
     const deleteComment = (id) => {
         fetch(`http://localhost:5000/deleteComment/${id}`, {
             method: 'DELETE'
-        });
-        setDependency(id);
+        })
+            .then(res => {
+                if (res) {
+                    setDependency(id);
+                };
+            });
     };
 
     useEffect(() => {
@@ -76,9 +78,10 @@ const Comments = () => {
                     </div>
                 </div>
             </form>
-            <div className="mt-5 mb-5"><div>
-                <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
-            </div>
+            <div className="mt-5 mb-5">
+                <div>
+                    <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
+                </div>
                 {
                     view === true ?
                         <div>
