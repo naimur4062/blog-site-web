@@ -11,9 +11,10 @@
   font-weight: 700;
 }
 
-.comment-details {
+.comment-details,
+.reply-details {
   background-color: #f0f2f5;
-  padding: 15px;
+  padding: 13px;
   border-radius: 20px;
 }
 
