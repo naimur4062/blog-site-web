@@ -54,6 +54,14 @@ const Comments = () => {
             .then(res => {
                 if (res) {
                     setDependency(id);
+                    fetch(`http://localhost:5000/deleteCommentWithReplies/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => {
+                            if (res) {
+                                console.log('comment delete with reply')
+                            }
+                        })
                 };
             });
     };

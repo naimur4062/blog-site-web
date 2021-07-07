@@ -1,18 +1,7 @@
 import React from 'react';
 
-const Reply = ({ replyDetails }) => {
+const Reply = ({ replyDetails, handleReplyDelete }) => {
     const { replierName, replierPhoto, reply, date, _id } = replyDetails;
-
-    const handleReplyDelete = (id) => {
-        fetch(`http://localhost:5000/deleteReply/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => {
-                if (res) {
-                    console.log('delete successful')
-                };
-            });
-    };
 
     return (
         <div>

@@ -3,6 +3,7 @@ import Reply from '../Reply/Reply';
 import { useForm } from 'react-hook-form';
 import './ShowingComments.css';
 import { UserContext } from '../../../App';
+import { Button } from 'react-bootstrap';
 
 const ShowingComments = ({ showingComment, deleteComment }) => {
     const replyDate = new Date();
@@ -44,13 +45,34 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
     //reply showing codes
     const [replyData, setReplyData] = useState([]);
     const replyDetails = replyData.filter((reply) => { return reply.commentId === _id });
-    console.log('replyData', replyData);
+    const num1 = replyDetails.length - 3;
+    const num2 = replyDetails.length;
+    const cutReplyDetails = replyDetails.slice(num1, num2);
+    const [view, setView] = useState(false);
+    console.log('cutReplyDetails', cutReplyDetails);
 
     useEffect(() => {
         fetch('http://localhost:5000/allReplies')
             .then(res => res.json())
             .then(data => setReplyData(data))
     }, [reply])
+
+    const handleReplyDelete = (id) => {
+        console.log('handleReplyDelete', id)
+        fetch(`http://localhost:5000/deleteReply/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => {
+                if (res) {
+                    console.log('delete successful');
+                    setReply(id);
+                };
+            });
+    };
+
+    const handleView = () => {
+        setView(true);
+    };
 
     return (
         <div>
@@ -67,10 +89,19 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
                 <p className="delete" onClick={() => deleteComment(_id)}>Delete</p>
             </div>
             {/* <p>Replies showing ui code</p> */}
-            <div style={{ marginLeft: '100px', borderLeft: '1px solid grey' }} className="show-replies mb-3">
-                {
-                    replyDetails.map(reply => <Reply key={reply._id} replyDetails={reply} />)
-                }
+            <div style={{ marginLeft: '100px', borderLeft: '1px solid grey' }} >
+                <div className="ml-3 mb-3">
+                    {
+                        view === false && replyDetails.length > 3 && <Button onClick={() => handleView()}>Click to view {replyDetails.length - 3} more replies</Button>
+                    }
+                </div>
+                <div className="show-replies mb-3">
+                    {
+                        view === false && replyDetails.length > 3 ? cutReplyDetails.map(reply => <Reply key={reply._id} replyDetails={reply} handleReplyDelete={handleReplyDelete} />)
+                            :
+                            replyDetails.map(reply => <Reply key={reply._id} replyDetails={reply} handleReplyDelete={handleReplyDelete} />)
+                    }
+                </div>
             </div>
             <div className="reply-box">
                 {reply === true && <form onSubmit={handleSubmit(onSubmit)}>

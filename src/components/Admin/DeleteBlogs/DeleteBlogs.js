@@ -9,9 +9,15 @@ const DeleteBlogs = () => {
     const blogTopic = currentPath.replace(/\%20/g, " ");
     const [dependency, setDependency] = useState(null);
     const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic });
+    // comments
+    const [commentsArray, setCommentsArray] = useState([]);
+    const comments = commentsArray.filter((comments) => { return comments.blogId === blogs[0]?._id });
 
-    // console.log('dependency', dependency);
-    // console.log(blogs);
+    useEffect(() => {
+        fetch('http://localhost:5000/comments')
+            .then(res => res.json())
+            .then(data => setCommentsArray(data))
+    }, []);
 
     useEffect(() => {
         fetch('http://localhost:5000/allBlogs')
@@ -26,6 +32,26 @@ const DeleteBlogs = () => {
             .then(res => {
                 if (res) {
                     setDependency(id);
+                    // delete post & comment
+                    fetch(`http://localhost:5000/deletePostComment/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => {
+                            if (res) {
+                                // delete post, comment & reply
+                                for (let i = 0; i < comments.length; i++) {
+                                    const comment = comments[i];
+                                    fetch(`http://localhost:5000/deletePostCommentReply/${comment._id}`, {
+                                        method: 'DELETE'
+                                    })
+                                        .then(res => {
+                                            if (res) {
+                                                console.log('delete post comment reply')
+                                            };
+                                        });
+                                };
+                            };
+                        });
                 };
             });
     };
