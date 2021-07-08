@@ -1,0 +1,12 @@
+.footer {
+  background-color: #ebe6d7;
+  padding: 10px;
+}
+
+.footer p {
+  color: gray;
+}
+
+.footer a {
+  color: #b39f67;
+}

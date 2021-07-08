@@ -4,8 +4,7 @@ import Blog from './Blog';
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
     const reverseBlogs = blogs.filter((blog) => { return blog }).reverse();
-    const pathname = window.location.pathname;
-    const currentPath = pathname.replace(/\//g, "");
+    const currentPath = window.location.pathname.replace(/\//g, "");
     const blogTopic = currentPath.replace(/\%20/g, " ").toUpperCase();
 
     useEffect(() => {

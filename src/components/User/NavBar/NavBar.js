@@ -5,10 +5,10 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-        <div>
-            <Navbar sticky="top" expand="lg" collapseOnSelect>
+        <div className="nav-container">
+            <Navbar bg="color" expand="lg" collapseOnSelect>
                 <Navbar.Toggle id="toggle" />
-                <Navbar.Collapse className="text-center">
+                <Navbar.Collapse id="collapse" className="text-center">
                     <Nav className="me-auto">
                         <Nav.Link href="/home"><span className="navLink">HOME</span></Nav.Link>
                         <Nav.Link href="/about"><span className="navLink">ABOUT</span></Nav.Link>

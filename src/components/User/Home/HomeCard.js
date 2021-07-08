@@ -7,7 +7,7 @@ const HomeCard = ({ blog }) => {
     useEffect(() => {
         AOS.init({ duration: 2000 });
     }, []);
-    const splitContent = blog?.content.split(" ");
+    const splitContent = blog?.content?.split(" ");
     const cutContent = splitContent?.slice(0, 15).toString();
 
     return (
@@ -18,6 +18,9 @@ const HomeCard = ({ blog }) => {
                     <h5 className="card-title text-color">{blog?.title}</h5>
                     <p className="card-text text-secondary mb-4">{cutContent}.....</p>
                     <Link to={`/blog/${blog?._id}`}>Read Blog</Link>
+                </div>
+                <div className="mb-3">
+                    <Link to={blog?.link}>Read More {blog?.topic} Blogs</Link>
                 </div>
             </div>
         </div>

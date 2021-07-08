@@ -9,6 +9,19 @@ Nav a:hover {
   text-decoration: none;
 }
 
+Nav a:hover .navLink {
+  color: #9b8036;
+}
+
 #toggle {
   border: 2px solid gray;
+}
+
+#collapse {
+  /* border: 1px solid red; */
+  /* padding-bottom: 100px; */
+}
+
+.bg-color {
+  background-color: #f0f0ef;
 }

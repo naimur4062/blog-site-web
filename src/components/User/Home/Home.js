@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HomeCard from './HomeCard';
+import './Home.css';
 
 const Home = () => {
     const [allBlogs, setAllBlogs] = useState([]);
@@ -18,7 +19,24 @@ const Home = () => {
     const ideaBlogs = allBlogs.filter((blog) => { return blog.topic === "idea" }).reverse()[0];
     const problemSolutionBlogs = allBlogs.filter((blog) => { return blog.topic === "problem solution" }).reverse()[0];
 
-    const blogs = [politicsBlogs, societyBlogs, policyIssueBlogs, governanceBlogs, globalGovernanceBlogs, europeBlogs, northAmericaBlogs, asiaBlogs, managementBlogs, publicPolicyBlogs, contemporaryGovernanceBlogs, knowledgeSharingBlogs, ideaBlogs, problemSolutionBlogs]
+    const blogs = [
+        { ...politicsBlogs, link: '/politics' },
+        { ...societyBlogs, link: '/society' },
+        { ...policyIssueBlogs, link: '/policy issue' },
+        { ...governanceBlogs, link: '/governance' },
+        { ...globalGovernanceBlogs, link: '/global governance' },
+        { ...europeBlogs, link: '/europe' },
+        { ...northAmericaBlogs, link: '/north america' },
+        { ...asiaBlogs, link: '/asia' },
+        { ...managementBlogs, link: '/management' },
+        { ...publicPolicyBlogs, link: '/public policy' },
+        { ...contemporaryGovernanceBlogs, link: '/contemporary governance' },
+        { ...knowledgeSharingBlogs, link: '/knowledge sharing' },
+        { ...ideaBlogs, link: '/idea' },
+        { ...problemSolutionBlogs, link: '/problem solution' }
+    ];
+
+    console.log({ ...politicsBlogs, link: '/home' })
 
     useEffect(() => {
         fetch('http://localhost:5000/allBlogs')
@@ -27,6 +45,7 @@ const Home = () => {
     }, [])
 
     return (
+        // without footer the css are applied from blog.css file
         <div>
             <div className="container">
                 <h1 style={{ color: 'grey' }} className="text-center py-5">My Blogs</h1>
@@ -36,6 +55,9 @@ const Home = () => {
                     }
                 </div>
             </div>
+            <footer className="footer text-center">
+                <p>Copyright &copy; <em id="date"></em> {new Date().getUTCFullYear()} By Md Harunur Rashid <br /> Developed By <a href="https://www.facebook.com/naimurrahman.abeer" target="_blank">Naimur Rahman</a></p>
+            </footer>
         </div>
     );
 };
