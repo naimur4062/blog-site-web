@@ -7,18 +7,11 @@ const NavBar = () => {
     return (
         <div>
             <Navbar sticky="top" expand="lg" collapseOnSelect>
-                <Navbar.Brand>
-                    {/* <h1 className="brand">PAD.blogs</h1> */}
-                </Navbar.Brand>
                 <Navbar.Toggle id="toggle" />
                 <Navbar.Collapse className="text-center">
                     <Nav className="me-auto">
-                        <Nav.Link>
-                            <Link to="/home"><span className="navLink">HOME</span></Link>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Link to="/about"><span className="navLink">ABOUT</span></Link>
-                        </Nav.Link>
+                        <Nav.Link href="/home"><span className="navLink">HOME</span></Nav.Link>
+                        <Nav.Link href="/about"><span className="navLink">ABOUT</span></Nav.Link>
                         {/* <p>admin</p> */}
                         <NavDropdown title="ADMIN" id="basic-nav-dropdown">
                             <NavDropdown.Item>
@@ -125,9 +118,6 @@ const NavBar = () => {
                                 <Link to="/problem solution"><span className="navLink">Problem Solution</span></Link>
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link>
-                            <Link to="/login"><span className="navLink">LOGIN</span></Link>
-                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

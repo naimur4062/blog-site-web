@@ -3,6 +3,7 @@ import Blog from './Blog';
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
+    const reverseBlogs = blogs.filter((blog) => { return blog }).reverse();
     const pathname = window.location.pathname;
     const currentPath = pathname.replace(/\//g, "");
     const blogTopic = currentPath.replace(/\%20/g, " ").toUpperCase();
@@ -14,16 +15,16 @@ const Blogs = () => {
             .then(data => setBlogs(data));
     }, [currentPath]);
 
+    console.log(reverseBlogs)
+
     return (
         <div>
-            <div>
-                <div className="container">
-                    <h1 style={{ color: 'grey' }} className="text-center py-5">Blogs about {blogTopic}</h1>
-                    <div className="row">
-                        {
-                            blogs.map(blog => <Blog key={blog.id} blog={blog} />)
-                        }
-                    </div>
+            <div className="container">
+                <h1 style={{ color: 'grey' }} className="text-center py-5">Blogs about {blogTopic}</h1>
+                <div className="row">
+                    {
+                        reverseBlogs.map(blog => <Blog key={blog?._id} blog={blog} />)
+                    }
                 </div>
             </div>
         </div>
