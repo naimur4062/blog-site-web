@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AdminContext, UserContext } from '../../../App';
 import './NavBar.css';
 
 const NavBar = () => {
+    const [isAdmin, setIsAdmin] = useContext(AdminContext);
+    const [user, setUser] = useContext(UserContext);
+    console.log('isAdmin', isAdmin)
+
+    useEffect(() => {
+        fetch('http://localhost:5000/isAdmin', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ email: user.email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsAdmin(data);
+            })
+    }, [user]);
     return (
         <div className="nav-container">
             <Navbar bg="color" expand="lg" collapseOnSelect>
@@ -13,7 +31,10 @@ const NavBar = () => {
                         <Nav.Link href="/home"><span className="navLink">HOME</span></Nav.Link>
                         <Nav.Link href="/about"><span className="navLink">ABOUT</span></Nav.Link>
                         {/* <p>admin</p> */}
-                        <NavDropdown title="ADMIN" id="basic-nav-dropdown">
+                        {isAdmin === true && <NavDropdown title="ADMIN" id="basic-nav-dropdown">
+                            <NavDropdown.Item>
+                                <Link to="/make admin"><span className="navLink">Make Admin</span></Link>
+                            </NavDropdown.Item>
                             <NavDropdown.Item>
                                 <Link to="/post blog"><span className="navLink">Post Blog</span></Link>
                             </NavDropdown.Item>
@@ -63,7 +84,7 @@ const NavBar = () => {
                             <NavDropdown.Item>
                                 <Link to="/delete problem solution"><span className="navLink">Delete Problem Solution</span></Link>
                             </NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown>}
                         {/* <p>bangladesh</p> */}
                         <NavDropdown title="BANGLADESH" id="basic-nav-dropdown">
                             <NavDropdown.Item>

@@ -15,12 +15,12 @@ const Login = () => {
 
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    const handleFacebookLogin = () => {
+    const handleGoogleLogin = () => {
         firebase.auth()
             .signInWithPopup(provider)
             .then((result) => {
                 const user = result.user;
-                const userInfo = { name: user.displayName, photo: user.photoURL };
+                const userInfo = { email: user.email, name: user.displayName, photo: user.photoURL };
                 setUser(userInfo);
             }).catch((error) => {
                 var errorMessage = error.message;
@@ -28,9 +28,11 @@ const Login = () => {
             });
     };
 
+    console.log(handleGoogleLogin)
+
     return (
         <div>
-            <Button onClick={handleFacebookLogin}>Login</Button>
+            <Button onClick={handleGoogleLogin}>Login</Button>
         </div>
     );
 };

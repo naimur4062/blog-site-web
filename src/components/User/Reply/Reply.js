@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AdminContext, UserContext } from '../../../App';
 
 const Reply = ({ replyDetails, handleReplyDelete }) => {
-    const { replierName, replierPhoto, reply, date, _id } = replyDetails;
+    const { replierName, replierEmail, replierPhoto, reply, date, _id } = replyDetails;
+    const [isAdmin, setIsAdmin] = useContext(AdminContext);
+    const [user, setUser] = useContext(UserContext);
+    const currentUser = user.email;
 
     return (
         <div>
@@ -14,7 +18,10 @@ const Reply = ({ replyDetails, handleReplyDelete }) => {
             </div>
             <div className="d-flex reply-function">
                 <p>{new Date(date).toLocaleString().split(',')[0]}</p>
-                <p onClick={() => handleReplyDelete(_id)} className="delete">Delete</p>
+                {
+                    isAdmin === true || currentUser === replierEmail ?
+                        <p onClick={() => handleReplyDelete(_id)} className="delete">Delete</p> : null
+                }
             </div>
         </div>
     );

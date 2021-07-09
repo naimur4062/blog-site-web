@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import deleteImg from '../../../images/delete.png';
 import './DeleteBlogs.css';
 
 const DeleteBlogs = () => {
@@ -8,7 +8,7 @@ const DeleteBlogs = () => {
     const currentPath = pathname.replace(/\/delete%20/g, "");
     const blogTopic = currentPath.replace(/\%20/g, " ");
     const [dependency, setDependency] = useState(null);
-    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic });
+    const blogs = blogsArray.filter((blog) => { return blog.topic === blogTopic }).reverse();
     // comments
     const [commentsArray, setCommentsArray] = useState([]);
     const comments = commentsArray.filter((comments) => { return comments.blogId === blogs[0]?._id });
@@ -46,9 +46,9 @@ const DeleteBlogs = () => {
                                     })
                                         .then(res => {
                                             if (res) {
-                                                console.log('delete post comment reply')
-                                            };
-                                        });
+                                                console.log('blog comment reply delete success')
+                                            }
+                                        })
                                 };
                             };
                         });
@@ -72,9 +72,9 @@ const DeleteBlogs = () => {
                                 blogs.map(blog => <p>{blog.title}</p>)
                             }
                         </div>
-                        <div className="col-md-4 mt-3 delete-button d-flex justify-content-center align-items-center">
+                        <div className="col-md-4 mt-2 delete-button d-flex justify-content-center align-items-center">
                             {
-                                blogs.map(blog => <Button onClick={() => deleteBlog(blog._id)}>Delete</Button>)
+                                blogs.map(blog => <img src={deleteImg} alt="..." onClick={() => deleteBlog(blog._id)} />)
                             }
                         </div>
                     </div>

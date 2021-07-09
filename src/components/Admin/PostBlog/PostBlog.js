@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useHistory, useParams } from 'react-router';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import AOS from "aos";
@@ -9,14 +8,12 @@ import "aos/dist/aos.css";
 
 
 const PostBlog = () => {
+    const { register, handleSubmit } = useForm();
     const [imageURL, setImageURL] = useState(null);
 
     useEffect(() => {
         AOS.init({ duration: 1500 });
     }, []);
-
-    const { register, handleSubmit } = useForm();
-    // let history = useHistory();
 
     const onSubmit = data => {
         const blogData = {
@@ -36,10 +33,13 @@ const PostBlog = () => {
             .then(res => {
                 if (res) {
                     alert('blog saved successfully to database');
-                    // history.push('/viewBlogs')
-                }
-            })
-    }
+                    document.getElementById('postTopic').value = '';
+                    document.getElementById('postTitle').value = '';
+                    document.getElementById('postContent').value = '';
+                    document.getElementById('postImg').value = '';
+                };
+            });
+    };
 
     const handleImageUpload = (event) => {
         const imageData = new FormData();
@@ -64,23 +64,23 @@ const PostBlog = () => {
                             <h3 className="text-center text-secondary">Post Blog</h3>
                             <div className="col-md-8 form-group mx-auto">
                                 <label htmlFor="form-label">Blog Topic (please start with small letter).</label> <br />
-                                <input name="topic" placeholder="Write Blog Topic" type="form-control" required ref={register} className="form-control" />
+                                <input name="topic" placeholder="Write Blog Topic" type="form-control" required ref={register} className="form-control" id="postTopic" />
                             </div>
                             <div className="col-md-8 form-group mx-auto">
                                 <label htmlFor="form-label">Blog Title</label> <br />
-                                <input name="title" placeholder="Write Blog Tile" type="form-control" required ref={register} className="form-control" />
+                                <input name="title" placeholder="Write Blog Title" type="form-control" required ref={register} className="form-control" id="postTitle" />
                             </div>
                             <div className="col-md-8 pt-2 form-group mx-auto">
                                 <label htmlFor="form-label">Blog Content</label> <br />
-                                <textarea className="form-control" name="content" defaultValue="" placeholder="Write Blog Content" required ref={register} cols="30" rows="10" required></textarea>
+                                <textarea name="content" defaultValue="" placeholder="Write Blog Content" required ref={register} className="form-control" id="postContent" cols="30" rows="10"></textarea>
                             </div>
                             <div className="col-md-8 pt-2 form-group mx-auto">
                                 <label htmlFor="form-label">Upload Image</label> <br />
-                                <input onChange={handleImageUpload} name="exampleRequired" type="file" required className="form-control" />
+                                <input onChange={handleImageUpload} name="exampleRequired" type="file" required className="form-control" id="postImg" />
                             </div>
                             <div className="save-button col-md-8 pt-2 form-group mx-auto text-center sendMessage">
                                 {
-                                    imageURL ? <input type="submit" className="btn btn-danger" value="POST" required /> : <input type="submit" className="btn btn-primary" value="W" disabled />
+                                    imageURL ? <input type="submit" className="btn btn-primary" value="POST" required /> : <input type="submit" className="btn btn-danger" value="WAIT" disabled />
                                 }
                             </div>
                         </div>

@@ -2,15 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import Reply from '../Reply/Reply';
 import { useForm } from 'react-hook-form';
 import './ShowingComments.css';
-import { UserContext } from '../../../App';
+import { AdminContext, UserContext } from '../../../App';
 import { Button } from 'react-bootstrap';
 
 const ShowingComments = ({ showingComment, deleteComment }) => {
     const replyDate = new Date();
     const { register, handleSubmit } = useForm();
     const [user, setUser] = useContext(UserContext);
-    const { name, photo, comment, date, _id } = showingComment;
+    const currentUser = user.email;
+    const { name, email, photo, comment, date, _id } = showingComment;
     const [reply, setReply] = useState(false);
+    const [isAdmin, setIsAdmin] = useContext(AdminContext);
 
     // reply post function
     const onSubmit = (data) => {
@@ -18,11 +20,11 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
             commentId: _id,
             commenter: name,
             replierName: user.name,
+            replierEmail: user.email,
             replierPhoto: user.photo,
             reply: data.reply,
             date: replyDate
         };
-        console.log('replyData', replyData)
         const url = `http://localhost:5000/postReply`;
         fetch(url, {
             method: 'POST',
@@ -49,7 +51,6 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
     const num2 = replyDetails.length;
     const cutReplyDetails = replyDetails.slice(num1, num2);
     const [view, setView] = useState(false);
-    console.log('cutReplyDetails', cutReplyDetails);
 
     useEffect(() => {
         fetch('http://localhost:5000/allReplies')
@@ -86,7 +87,10 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
             <div className="d-flex comment-function">
                 <p>{new Date(date).toLocaleString().split(',')[0]}</p>
                 <p onClick={replyBoxOpen} className="reply">Reply</p>
-                <p className="delete" onClick={() => deleteComment(_id)}>Delete</p>
+                {
+                    isAdmin === true || currentUser === email ?
+                        <p className="delete" onClick={() => deleteComment(_id)}>Delete</p> : null
+                }
             </div>
             {/* <p>Replies showing ui code</p> */}
             <div style={{ marginLeft: '100px', borderLeft: '1px solid grey' }} >
@@ -110,7 +114,7 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
                             <textarea name="reply" placeholder="Write Your Comment" type="form-control" required ref={register} className="form-control" />
                         </div>
                         <div className="col-md-2 form-group">
-                            <input type="submit" className="btn btn-danger" value="reply" required />
+                            <input type="submit" className="btn btn-primary" value="Reply" required />
                         </div>
                     </div>
                 </form>}

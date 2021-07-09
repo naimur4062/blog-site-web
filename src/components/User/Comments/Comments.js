@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { CommentContext, UserContext } from '../../../App';
+import { UserContext } from '../../../App';
 import Login from '../Login/Login';
 import { useParams } from 'react-router-dom';
 import ShowingComments from '../ShowingComments/ShowingComments';
 import { Button } from 'react-bootstrap';
+import './Comments.css';
 
 const Comments = () => {
     const date = new Date();
@@ -25,6 +26,7 @@ const Comments = () => {
     const onSubmit = data => {
         const commentData = {
             name: user.name,
+            email: user.email,
             photo: user.photo,
             comment: data.comment,
             blogId: id,
@@ -43,8 +45,9 @@ const Comments = () => {
                 if (data) {
                     setDependency(true);
                     setDependency(false);
-                }
-            })
+                    document.getElementById('commentInput').value = '';
+                };
+            });
     };
 
     const deleteComment = (id) => {
@@ -56,12 +59,7 @@ const Comments = () => {
                     setDependency(id);
                     fetch(`http://localhost:5000/deleteCommentWithReplies/${id}`, {
                         method: 'DELETE'
-                    })
-                        .then(res => {
-                            if (res) {
-                                console.log('comment delete with reply')
-                            }
-                        })
+                    });
                 };
             });
     };
@@ -73,22 +71,22 @@ const Comments = () => {
     }, [dependency]);
 
     return (
-        <div>
+        <div style={{ overflowX: 'hidden' }}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row d-flex justify-content-center align-items-center">
                     <div className="col-md-8 form-group">
-                        <textarea name="comment" placeholder="Write Your Comment" type="form-control" required ref={register} className="form-control" />
+                        <textarea id="commentInput" name="comment" placeholder="Write Your Comment" type="form-control" required ref={register} className="form-control" />
                     </div>
                     <div className="col-md-2 form-group">
                         {
-                            user.name ? <input type="submit" className="btn btn-danger" value="COMMENT" required /> : <Login />
+                            user.name ? <input type="submit" className="btn btn-primary" value="COMMENT" required /> : <Login />
                         }
                     </div>
                 </div>
             </form>
             <div className="mt-5 mb-5">
-                <div>
-                    <h1 className="mx-5 text-center">Total Comments are: {fullComments.length}</h1>
+                <div className="heading">
+                    <h1 className="mx-5 mb-5 text-center">Total Comments are: {fullComments.length}</h1>
                 </div>
                 {
                     view === true ?
