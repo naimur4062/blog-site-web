@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const MakeAdmin = () => {
     const { register, handleSubmit } = useForm();
 
+    useEffect(() => {
+        AOS.init({ duration: 1500 });
+    }, []);
+
     const onSubmit = data => {
         const adminData = { email: data.email }
-
         const url = `http://localhost:5000/makeAdmin`;
         fetch(url, {
             method: 'POST',
@@ -25,7 +30,7 @@ const MakeAdmin = () => {
             })
     };
     return (
-        <div className="container">
+        <div data-aos="zoom-in" className="container">
             <h3 style={{ color: 'grey' }} className="my-5 text-center">Add Admin</h3>
             <div className="mb-3 p-4" style={{ background: 'lightblue', borderRadius: '8px' }}>
                 <form onSubmit={handleSubmit(onSubmit)}>

@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import Reply from '../Reply/Reply';
 import { useForm } from 'react-hook-form';
 import './ShowingComments.css';
-import { AdminContext, UserContext } from '../../../App';
+import { AdminContext, LoginContext, UserContext } from '../../../App';
 import { Button } from 'react-bootstrap';
+import Login from '../Login/Login';
 
 const ShowingComments = ({ showingComment, deleteComment }) => {
     const replyDate = new Date();
@@ -114,7 +115,9 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
                             <textarea name="reply" placeholder="Write Your Comment" type="form-control" required ref={register} className="form-control" />
                         </div>
                         <div className="col-md-2 form-group">
-                            <input type="submit" className="btn btn-primary" value="Reply" required />
+                            {
+                                currentUser ? <input type="submit" className="btn btn-primary" value="Reply" required /> : <Login />
+                            }
                         </div>
                     </div>
                 </form>}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeCard from './HomeCard';
 import './Home.css';
+import { Spinner } from 'react-bootstrap';
 
 const Home = () => {
     const [allBlogs, setAllBlogs] = useState([]);
@@ -39,26 +40,48 @@ const Home = () => {
     console.log({ ...politicsBlogs, link: '/home' })
 
     useEffect(() => {
-        fetch('http://localhost:5000/allBlogs')
+        fetch('http://localhost:5000/blogs')
             .then(res => res.json())
             .then(data => setAllBlogs(data))
     }, [])
 
     return (
         // without footer the css are applied from blog.css file
-        <div>
-            <div className="container">
-                <h1 style={{ color: 'grey' }} className="text-center py-5">My Blogs</h1>
-                <div className="row">
-                    {
-                        blogs.map(blog => <HomeCard key={blog?._id} blog={blog} />)
-                    }
-                </div>
-            </div>
-            <footer className="footer text-center">
-                <p>Copyright &copy; <em id="date"></em> {new Date().getUTCFullYear()} By Md Harunur Rashid <br /> Developed By <a href="https://www.facebook.com/naimurrahman.abeer" target="_blank">Naimur Rahman</a></p>
-            </footer>
-        </div>
+        <>
+            {
+                allBlogs.length ?
+                    <>
+                        {
+                            blogs.length ?
+                                <div>
+                                    <div className="container">
+                                        <h1 style={{ color: 'grey' }} className="text-center py-5">My Blogs</h1>
+                                        <div className="row">
+                                            {
+                                                blogs.map(blog => <HomeCard key={blog?._id} blog={blog} />)
+                                            }
+                                        </div>
+                                    </div>
+                                    <footer className="footer text-center">
+                                        <p>Copyright &copy; <em id="date"></em> {new Date().getUTCFullYear()} By Md Harunur Rashid <br /> Developed By <a href="https://www.facebook.com/naimurrahman.abeer" target="_blank">Naimur Rahman</a></p>
+                                    </footer>
+                                </div>
+                                :
+                                <h1 style={{ color: 'grey' }} className="text-center mt-5 pt-5">Sorry, Blogs are not available.</h1>
+                        }
+                    </>
+                    :
+                    <div className="d-flex justify-content-center align-items-center mt-5 pt-5">
+                        <Spinner animation="grow" variant="primary" />
+                        <Spinner animation="grow" variant="secondary" />
+                        <Spinner animation="grow" variant="success" />
+                        <Spinner animation="grow" variant="danger" />
+                        <Spinner animation="grow" variant="warning" />
+                        <Spinner animation="grow" variant="info" />
+                        <Spinner animation="grow" variant="dark" />
+                    </div>
+            }
+        </>
     );
 };
 

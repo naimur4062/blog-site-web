@@ -14,7 +14,6 @@ const Login = () => {
     };
 
     const provider = new firebase.auth.GoogleAuthProvider();
-
     const handleGoogleLogin = () => {
         firebase.auth()
             .signInWithPopup(provider)
@@ -23,12 +22,10 @@ const Login = () => {
                 const userInfo = { email: user.email, name: user.displayName, photo: user.photoURL };
                 setUser(userInfo);
             }).catch((error) => {
-                var errorMessage = error.message;
+                const errorMessage = error.message;
                 console.log(errorMessage);
             });
     };
-
-    console.log(handleGoogleLogin)
 
     return (
         <div>
