@@ -23,7 +23,7 @@ const NavBar = () => {
             })
     }, [user]);
     return (
-        <Navbar bg="color" expand="lg" collapseOnSelect>
+        <Navbar sticky="top" bg="color" expand="lg" collapseOnSelect>
             <Navbar.Toggle id="toggle" />
             <Navbar.Collapse id="collapse" className="text-center">
                 <Nav className="me-auto">

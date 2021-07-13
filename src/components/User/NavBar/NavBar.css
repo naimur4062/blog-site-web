@@ -17,12 +17,10 @@ Nav a:hover .navLink {
   border: 2px solid gray;
 }
 
-#collapse {
-  /* border: 1px solid red; */
-  /* padding-bottom: 100px; */
-}
-
 .bg-color {
   background-color: #f0f0ef;
+}
+
+.navbar {
   height: auto;
 }

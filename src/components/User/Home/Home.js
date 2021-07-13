@@ -37,8 +37,6 @@ const Home = () => {
         { ...problemSolutionBlogs, link: '/problem solution' }
     ];
 
-    console.log({ ...politicsBlogs, link: '/home' })
-
     useEffect(() => {
         fetch('http://localhost:5000/blogs')
             .then(res => res.json())
