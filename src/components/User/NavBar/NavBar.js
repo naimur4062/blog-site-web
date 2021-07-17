@@ -14,7 +14,7 @@ const NavBar = () => {
     // const decodedEmail = jwt_decode(sessionStorage.getItem('token')).email;
 
     useEffect(() => {
-        fetch('http://localhost:5000/isAdmin', {
+        fetch('https://evening-plains-64607.herokuapp.com/isAdmin', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -28,7 +28,7 @@ const NavBar = () => {
     }, [user]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/admins')
+        fetch('https://evening-plains-64607.herokuapp.com/admins')
             .then(res => res.json())
             .then(data => {
                 data.forEach(admin => {

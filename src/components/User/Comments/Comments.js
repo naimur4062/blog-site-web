@@ -33,7 +33,7 @@ const Comments = () => {
             date: date
         };
         console.log('commentData', commentData)
-        const url = `http://localhost:5000/postComment`;
+        const url = `https://evening-plains-64607.herokuapp.com/postComment`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -51,13 +51,13 @@ const Comments = () => {
     };
 
     const deleteComment = (id) => {
-        fetch(`http://localhost:5000/deleteComment/${id}`, {
+        fetch(`https://evening-plains-64607.herokuapp.com/deleteComment/${id}`, {
             method: 'DELETE'
         })
             .then(res => {
                 if (res) {
                     setDependency(id);
-                    fetch(`http://localhost:5000/deleteCommentWithReplies/${id}`, {
+                    fetch(`https://evening-plains-64607.herokuapp.com/deleteCommentWithReplies/${id}`, {
                         method: 'DELETE'
                     });
                 };
@@ -65,7 +65,7 @@ const Comments = () => {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/comments')
+        fetch('https://evening-plains-64607.herokuapp.com/comments')
             .then(res => res.json())
             .then(data => setCommentsArray(data))
     }, [dependency]);

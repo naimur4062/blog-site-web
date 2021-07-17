@@ -13,7 +13,7 @@ const Blogs = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://evening-plains-64607.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => {
                 setLoading(data);
@@ -22,7 +22,7 @@ const Blogs = () => {
     }, [window.location.pathname]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/searchBlogs?search=${search}`)
+        fetch(`https://evening-plains-64607.herokuapp.com/searchBlogs?search=${search}`)
             .then(res => res.json())
             .then(data => setBlogsArray(data))
     }, [search]);

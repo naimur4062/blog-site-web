@@ -38,7 +38,7 @@ const Home = () => {
     ];
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://evening-plains-64607.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => setAllBlogs(data))
     }, [])

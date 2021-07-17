@@ -26,7 +26,7 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
             reply: data.reply,
             date: replyDate
         };
-        const url = `http://localhost:5000/postReply`;
+        const url = `https://evening-plains-64607.herokuapp.com/postReply`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -54,14 +54,14 @@ const ShowingComments = ({ showingComment, deleteComment }) => {
     const [view, setView] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allReplies')
+        fetch('https://evening-plains-64607.herokuapp.com/allReplies')
             .then(res => res.json())
             .then(data => setReplyData(data))
     }, [reply])
 
     const handleReplyDelete = (id) => {
         console.log('handleReplyDelete', id)
-        fetch(`http://localhost:5000/deleteReply/${id}`, {
+        fetch(`https://evening-plains-64607.herokuapp.com/deleteReply/${id}`, {
             method: 'DELETE'
         })
             .then(res => {

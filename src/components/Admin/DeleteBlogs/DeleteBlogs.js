@@ -15,26 +15,26 @@ const DeleteBlogs = () => {
     const comments = commentsArray.filter((comments) => { return comments.blogId === blogs[0]?._id });
 
     useEffect(() => {
-        fetch('http://localhost:5000/comments')
+        fetch('https://evening-plains-64607.herokuapp.com/comments')
             .then(res => res.json())
             .then(data => setCommentsArray(data))
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://evening-plains-64607.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => setBlogsArray(data))
     }, [dependency]);
 
     const deleteBlog = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://evening-plains-64607.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => {
                 if (res) {
                     setDependency(id);
                     // delete post & comment
-                    fetch(`http://localhost:5000/deletePostComment/${id}`, {
+                    fetch(`https://evening-plains-64607.herokuapp.com/deletePostComment/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => {
@@ -42,7 +42,7 @@ const DeleteBlogs = () => {
                                 // delete post, comment & reply
                                 for (let i = 0; i < comments.length; i++) {
                                     const comment = comments[i];
-                                    fetch(`http://localhost:5000/deletePostCommentReply/${comment._id}`, {
+                                    fetch(`https://evening-plains-64607.herokuapp.com/deletePostCommentReply/${comment._id}`, {
                                         method: 'DELETE'
                                     })
                                         .then(res => {

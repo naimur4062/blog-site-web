@@ -10,7 +10,7 @@ const ReadBlog = () => {
     console.log('content', content)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/blog/${id}`)
+        fetch(`https://evening-plains-64607.herokuapp.com/blog/${id}`)
             .then(res => res.json())
             .then(data => {
                 setContent(data[0]);

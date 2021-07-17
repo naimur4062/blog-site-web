@@ -22,7 +22,7 @@ const PostBlog = () => {
             content: data.content,
             image: imageURL
         };
-        const url = `http://localhost:5000/postBlog`;
+        const url = `https://evening-plains-64607.herokuapp.com/postBlog`;
         fetch(url, {
             method: 'POST',
             headers: {
