@@ -25,6 +25,16 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
+        userToken();
+    };
+
+    const userToken = () => {
+        firebase.auth().currentUser?.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+            sessionStorage.setItem('token', idToken)
+            console.log(idToken)
+        }).catch(function (error) {
+            console.log(error)
+        });
     };
 
     return (

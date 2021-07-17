@@ -52,7 +52,7 @@ const Blogs = () => {
                                     }
                                 </div>
                                 :
-                                <h1 style={{ color: 'red' }} className="text-center mt-5">Please wait <br></br> or <br></br> Blogs are not available</h1>
+                                <h1 style={{ color: 'red' }} className="text-center mt-5">Please wait <br></br> or <br></br> Blogs may be not available</h1>
                         }
                     </div>
                     :

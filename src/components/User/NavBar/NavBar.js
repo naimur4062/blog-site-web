@@ -1,13 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AdminContext, UserContext } from '../../../App';
+import Login from '../Login/Login';
 import './NavBar.css';
+import jwt_decode from 'jwt-decode';
 
 const NavBar = () => {
     const [isAdmin, setIsAdmin] = useContext(AdminContext);
+    const [adminLogin, setAdminLogin] = useState(false);
     const [user, setUser] = useContext(UserContext);
-    console.log('isAdmin', isAdmin)
+    // const decodedName = jwt_decode(sessionStorage.getItem('token')).name;
+    // const decodedEmail = jwt_decode(sessionStorage.getItem('token')).email;
 
     useEffect(() => {
         fetch('http://localhost:5000/isAdmin', {
@@ -22,6 +26,18 @@ const NavBar = () => {
                 setIsAdmin(data);
             })
     }, [user]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/admins')
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(admin => {
+                    // if (admin.email === decodedEmail) {
+                    //     setAdminLogin(true);
+                    // };
+                });
+            })
+    }, [])
     return (
         <Navbar sticky="top" bg="color" expand="lg" collapseOnSelect>
             <Navbar.Toggle id="toggle" />
@@ -30,7 +46,7 @@ const NavBar = () => {
                     <Nav.Link href="/home"><span className="navLink">HOME</span></Nav.Link>
                     <Nav.Link href="/about"><span className="navLink">ABOUT</span></Nav.Link>
                     {/* <p>admin</p> */}
-                    {isAdmin === true && <NavDropdown title="ADMIN" id="basic-nav-dropdown">
+                    {isAdmin === true ? <NavDropdown title="ADMIN" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <Link to="/make admin"><span className="navLink">Make Admin</span></Link>
                         </NavDropdown.Item>
@@ -83,7 +99,7 @@ const NavBar = () => {
                         <NavDropdown.Item>
                             <Link to="/delete problem solution"><span className="navLink">Delete Problem Solution</span></Link>
                         </NavDropdown.Item>
-                    </NavDropdown>}
+                    </NavDropdown> : null}
                     {/* <p>bangladesh</p> */}
                     <NavDropdown title="BANGLADESH" id="basic-nav-dropdown">
                         <NavDropdown.Item>
@@ -138,6 +154,7 @@ const NavBar = () => {
                             <Link to="/problem solution"><span className="navLink">Problem Solution</span></Link>
                         </NavDropdown.Item>
                     </NavDropdown>
+                    <span className="navLink"><Login /></span>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

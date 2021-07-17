@@ -4,6 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./components/User/Home/Home";
+import About from "./components/Admin/About/About";
 import NavBar from "./components/User/NavBar/NavBar";
 import NotFound from "./components/User/NotFound/NotFound";
 import PostBlog from "./components/Admin/PostBlog/PostBlog";
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/home">
               <Home />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             {/* Bangladesh */}
             <Route path="/politics">

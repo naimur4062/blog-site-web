@@ -7,6 +7,7 @@ import './ReadBlog.css';
 const ReadBlog = () => {
     const { id } = useParams();
     const [content, setContent] = useState('');
+    console.log('content', content)
 
     useEffect(() => {
         fetch(`http://localhost:5000/blog/${id}`)

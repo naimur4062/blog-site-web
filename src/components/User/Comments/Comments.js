@@ -32,6 +32,7 @@ const Comments = () => {
             blogId: id,
             date: date
         };
+        console.log('commentData', commentData)
         const url = `http://localhost:5000/postComment`;
         fetch(url, {
             method: 'POST',
@@ -40,9 +41,8 @@ const Comments = () => {
             },
             body: JSON.stringify(commentData)
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data) {
+            .then(res => {
+                if (res) {
                     setDependency(true);
                     setDependency(false);
                     document.getElementById('commentInput').value = '';

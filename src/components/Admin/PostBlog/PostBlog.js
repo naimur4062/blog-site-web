@@ -43,7 +43,7 @@ const PostBlog = () => {
 
     const handleImageUpload = (event) => {
         const imageData = new FormData();
-        imageData.set('key', '3fbd18749a02465de2e5cad61c40c47a');
+        imageData.set('key', '68fc048e67368de5d51584a90bf6bfec');
         imageData.append('image', event.target.files[0]);
 
         axios.post('https://api.imgbb.com/1/upload',

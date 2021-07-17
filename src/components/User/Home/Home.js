@@ -48,26 +48,19 @@ const Home = () => {
         <>
             {
                 allBlogs.length ?
-                    <>
-                        {
-                            blogs.length ?
-                                <div>
-                                    <div className="container">
-                                        <h1 style={{ color: 'grey' }} className="text-center py-5">My Blogs</h1>
-                                        <div className="row">
-                                            {
-                                                blogs.map(blog => <HomeCard key={blog?._id} blog={blog} />)
-                                            }
-                                        </div>
-                                    </div>
-                                    <footer className="footer text-center">
-                                        <p>Copyright &copy; <em id="date"></em> {new Date().getUTCFullYear()} By Md Harunur Rashid <br /> Developed By <a href="https://www.facebook.com/naimurrahman.abeer" target="_blank">Naimur Rahman</a></p>
-                                    </footer>
-                                </div>
-                                :
-                                <h1 style={{ color: 'grey' }} className="text-center mt-5 pt-5">Sorry, Blogs are not available.</h1>
-                        }
-                    </>
+                    <div>
+                        <div className="container">
+                            <h1 style={{ color: 'grey' }} className="text-center py-5">My Blogs</h1>
+                            <div className="row">
+                                {
+                                    blogs.map(blog => <HomeCard key={blog?._id} blog={blog} />)
+                                }
+                            </div>
+                        </div>
+                        <footer className="footer text-center">
+                            <p>Copyright &copy; <em id="date"></em> {new Date().getUTCFullYear()} By Md Harunur Rashid <br /> Developed By <a href="https://www.facebook.com/naimurrahman.abeer" target="_blank">Naimur Rahman</a></p>
+                        </footer>
+                    </div>
                     :
                     <div className="d-flex justify-content-center align-items-center mt-5 pt-5">
                         <Spinner animation="grow" variant="primary" />
